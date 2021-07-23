@@ -4,8 +4,18 @@ export default class HexCell {
     this.y = 0;
     this.neighbors = new Array(6);
     this.value = value;
+    this.active = false;
 
     return this;
+  }
+
+  setActive(active = false, applyNeighbor = true) {
+    this.active = active;
+    this.neighbors.forEach((neighbor) => {
+      if (neighbor && applyNeighbor) {
+        neighbor.setActive(!neighbor.active, false);
+      }
+    });
   }
 
   get coordinates() {
