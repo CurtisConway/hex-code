@@ -1,12 +1,12 @@
 <template>
-  <td @click="setCellActive" :class="{'active': hexCell.active}">
-    <h4>
+  <div class="cell" @click="setCellActive" :class="{'active': hexCell.active}">
+    <h4 v-show="showNumbers">
       {{ hexCell.value }}
     </h4>
-    <p>
-      {{ hexCell.x }}, {{ hexCell.y }}
-    </p>
-  </td>
+<!--    <p v-show="showNumbers">-->
+<!--      {{ hexCell.x }}, {{ hexCell.y }}-->
+<!--    </p>-->
+  </div>
 </template>
 
 <script>
@@ -20,6 +20,11 @@ export default {
       default: () => new HexCell(),
     },
   },
+  data() {
+    return {
+      showNumbers: false,
+    };
+  },
   computed: {
     code() {
       return this.hexCell.code;
@@ -27,9 +32,13 @@ export default {
   },
   methods: {
     setCellActive() {
-      console.log('hello?');
       this.hexCell.setActive(!this.hexCell.active);
     },
+  },
+  mounted() {
+    setTimeout(() => {
+      this.showNumbers = true;
+    }, 2000);
   },
 };
 </script>

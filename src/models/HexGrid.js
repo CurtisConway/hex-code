@@ -5,8 +5,26 @@ export default class HexGrid {
     this.size = size;
     this.diameter = (this.size * 2) - 1;
     this.grid = new Array(this.diameter);
+    this.list = [];
+    this.solution = [];
 
     this.createGrid();
+    this.createSolution();
+  }
+
+  get cellCount() {
+    return this.list.length;
+  }
+
+  createSolution() {
+    for (let i = 0; i < 3; i++) {
+      let randomIndex = Math.floor(Math.random() * this.cellCount);
+      while (this.solution.includes(randomIndex + 1)) {
+        randomIndex = Math.floor(Math.random() * this.cellCount);
+      }
+      this.list[randomIndex].setActive(!this.list[randomIndex].active);
+      this.solution.push(randomIndex + 1);
+    }
   }
 
   createGrid() {
@@ -28,10 +46,11 @@ export default class HexGrid {
     this.grid[index] = row;
     for (let i = 0; i < cellCount; i += 1) {
       const cell = new HexCell();
+      this.list.push(cell);
       cell.y = (index + 1) - this.size;
       const xOffset = index >= this.size ? index + 1 - this.size : 0;
       cell.x = (i + this.size - xOffset) - cellCount;
-      cell.value = Math.ceil(Math.random() * 9);
+      cell.value = this.list.length;
       row[i] = cell;
       if (i > 0) {
         row[i - 1].setNeighbor(HexCell.Directions.East, cell);

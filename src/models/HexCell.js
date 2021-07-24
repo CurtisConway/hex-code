@@ -9,7 +9,7 @@ export default class HexCell {
     return this;
   }
 
-  setActive(active = false, applyNeighbor = true) {
+  setActive(active = true, applyNeighbor = true) {
     this.active = active;
     this.neighbors.forEach((neighbor) => {
       if (neighbor && applyNeighbor) {
