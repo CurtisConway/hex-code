@@ -1,8 +1,11 @@
 <template>
   <div class="cell" @click="setCellActive" :class="{'active': hexCell.active}">
-    <h4 v-show="showNumbers">
-      {{ hexCell.value }}
-    </h4>
+    <div class="square">
+      <h4 v-show="showNumbers">
+        {{ hexCell.value }}
+      </h4>
+    </div>
+
 <!--    <p v-show="showNumbers">-->
 <!--      {{ hexCell.x }}, {{ hexCell.y }}-->
 <!--    </p>-->
@@ -33,6 +36,7 @@ export default {
   methods: {
     setCellActive() {
       this.hexCell.setActive(!this.hexCell.active);
+      this.$emit('setActive', this.hexCell);
     },
   },
   mounted() {

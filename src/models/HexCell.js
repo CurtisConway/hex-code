@@ -25,13 +25,6 @@ export default class HexCell {
     };
   }
 
-  get code() {
-    const neighborsReduced = this.neighbors
-      .map((neighbor) => neighbor.value)
-      .reduce((accumulator, current) => current + accumulator, 0);
-    return this.value + neighborsReduced;
-  }
-
   setNeighbor(direction = HexCell.Directions.NorthWest, hexCell, setSelf = true) {
     const opposite = HexCell.getOppositeDirection(direction);
     this.neighbors[direction] = hexCell;

@@ -47,11 +47,4 @@ describe('HexCell', () => {
     expect(hexCell.getNeighbor(HexCell.Directions.East)).toBe(neighbor);
     expect(neighbor.getNeighbor(HexCell.Directions.West)).toBe(hexCell);
   });
-
-  it('can calculate the code', () => {
-    directions.forEach((direction) => {
-      hexCell.setNeighbor(HexCell.Directions[direction], new HexCell(SAMPLE_HEX_VALUE));
-    });
-    expect(hexCell.code).toBe(SAMPLE_HEX_VALUE * (MAX_HEX_SIDES + 1));
-  });
 });
