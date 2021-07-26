@@ -234,12 +234,6 @@ body {
     animation-timing-function:cubic-bezier(.5,.5,0,1);
   }
 
-  &:hover {
-    &:after {
-      background-color:#242424;
-    }
-  }
-
   p, h4 {
     animation-name:fadeIn;
     animation-iteration-count: 1;
